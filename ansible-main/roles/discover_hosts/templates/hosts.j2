@@ -1,0 +1,10 @@
+[windows]
+{% for host in discovered_hosts %}
+10.83.100.{{ host }}
+{% endfor %}
+
+[windows:vars]
+ansible_user={{ ansible_user }}
+ansible_password={{ ansible_password }}
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore

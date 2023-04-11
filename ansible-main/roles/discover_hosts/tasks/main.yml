@@ -1,0 +1,15 @@
+---
+- name: Discover hosts in the IP range
+  ansible.builtin.command: >
+    ping -n 1 -w 1 {{ '10.83.100.' ~ item }}
+  with_sequence: start=100 end=200
+  register: ping_result
+  changed_when: false
+
+- name: Generate discovered_inventory.ini file
+  template:
+    src: hosts.j2
+    dest: "{{ playbook_dir }}/../discovered_inventory.ini"
+  delegate_to: localhost
+  vars:
+    discovered_hosts: "{{ ping_result.results | selectattr('rc', 'equalto', 0) | map(attribute='item') | list }}"

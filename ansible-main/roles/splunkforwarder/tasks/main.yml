@@ -1,0 +1,6 @@
+---
+- name: Include Splunk Forwarder installation tasks
+  include_tasks: install.yml
+
+- name: Include Splunk Forwarder configuration tasks
+  include_tasks: configure.yml

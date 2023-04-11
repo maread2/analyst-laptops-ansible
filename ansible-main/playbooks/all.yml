@@ -1,0 +1,6 @@
+---
+- import_playbook: discover_hosts.yml
+
+- import_playbook: sysmon.yml
+
+- import_playbook: splunkforwarder.yml

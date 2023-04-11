@@ -1,0 +1,5 @@
+---
+- name: Discover hosts
+  hosts: initial_host
+  roles:
+    - discover_hosts

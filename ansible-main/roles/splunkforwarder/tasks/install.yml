@@ -1,0 +1,21 @@
+---
+- name: Copy Splunk Forwarder binary to target host
+  ansible.windows.win_copy:
+    src: software\Splunk\splunkforwarder-9.0.4-de405f4a7979-x64-release.msi
+    dest: "{{ splunkforwarder_binary_path }}"
+
+- name: Copy inputs.conf to target host
+  ansible.windows.win_copy:
+    src: software\Splunk\inputs.conf
+    dest: "{{ inputs_conf_path }}"
+
+- name: Copy outputs.conf to target host
+  ansible.windows.win_copy:
+    src: software\Splunk\outputs.conf
+    dest: "{{ outputs_conf_path }}"
+
+- name: Install Splunk Forwarder
+  ansible.windows.win_package:
+    path: "{{ splunkforwarder_binary_path }}"
+    product_id: 'SplunkForwarder'
+    state: present

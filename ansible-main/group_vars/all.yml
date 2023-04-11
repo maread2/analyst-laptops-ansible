@@ -1,0 +1,10 @@
+splunkforwarder_binary_path: C:\temp\splunkforwarder-9.0.4-de405f4a7979-x64-release.msi
+sysmon_binary_path: C:\temp\Sysmon.exe
+sysmon_config_path: C:\temp\sysmonconfig.xml
+inputs_conf_path: C:\temp\inputs.conf
+outputs_conf_path: C:\temp\outputs.conf
+
+
+
+
+

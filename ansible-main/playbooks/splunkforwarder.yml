@@ -1,0 +1,5 @@
+---
+- name: Install and configure Splunk Forwarder
+  hosts: windows
+  roles:
+    - splunkforwarder

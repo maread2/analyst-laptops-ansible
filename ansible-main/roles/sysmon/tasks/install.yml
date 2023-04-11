@@ -1,0 +1,15 @@
+---
+- name: Copy Sysmon binary to target host
+  ansible.windows.win_copy:
+    src: software\Sysmon\Sysmon.exe
+    dest: "{{ sysmon_binary_path }}"
+
+- name: Copy sysmonconfig.xml to target host
+  ansible.windows.win_copy:
+    src: software\Sysmon\sysmonconfig.xml
+    dest: "{{ sysmon_config_path }}"
+
+- name: Install Sysmon
+  ansible.windows.win_command: "{{ sysmon_binary_path }} -accepteula -i {{ sysmon_config_path }}"
+  args:
+    creates: C:\Windows\System32\Sysmon64.exe

@@ -1,0 +1,24 @@
+---
+- name: Create SplunkForwarder configuration directories
+  ansible.windows.win_file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - C:\Program Files\SplunkUniversalForwarder\etc\apps\local
+    - C:\Program Files\SplunkUniversalForwarder\etc\system\local
+
+- name: Copy SplunkForwarder inputs.conf
+  ansible.windows.win_copy:
+    src: "{{ splunkforwarder_inputs_conf_path }}"
+    dest: C:\Program Files\SplunkUniversalForwarder\etc\system\local\inputs.conf
+
+- name: Copy SplunkForwarder outputs.conf
+  ansible.windows.win_copy:
+    src: "{{ splunkforwarder_outputs_conf_path }}"
+    dest: C:\Program Files\SplunkUniversalForwarder\etc\system\local\outputs.conf
+
+- name: Start SplunkForwarder service
+  ansible.windows.win_service:
+    name: SplunkForwarder
+    state: started
+    start_mode: auto
